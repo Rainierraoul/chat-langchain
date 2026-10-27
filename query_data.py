@@ -1,3 +1,4 @@
+import os
 from langchain.callbacks.base import AsyncCallbackManager
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chains.chat_vector_db.prompts import CONDENSE_QUESTION_PROMPT
@@ -45,14 +46,14 @@ def get_chain(
         temperature=0,
         verbose=True,
         callback_manager=question_manager,
-        openai_api_key="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"
+        openai_api_key=os.environ["OPENAI_API_KEY"]
     )
     streaming_llm = ChatOpenAI(
         streaming=True,
         callback_manager=stream_manager,
         verbose=True,
         temperature=0,
-        openai_api_key="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"
+        openai_api_key=os.environ["OPENAI_API_KEY"]
     )
 
     question_generator = LLMChain(

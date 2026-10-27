@@ -17,7 +17,7 @@ def ingest_docs(file):
         chunk_overlap=200,
     )
     documents = text_splitter.split_documents(raw_documents)
-    embeddings = OpenAIEmbeddings(openai_api_key="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")
+    embeddings = OpenAIEmbeddings(openai_api_key=os.environ["OPENAI_API_KEY"])
     vectorstore = FAISS.from_documents(documents, embeddings)
 
     # Save vectorstore
